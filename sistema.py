@@ -1,12 +1,17 @@
 # Variáveis globais
+AGENCIA = "0001"
+VALOR_LIMITE_POR_SAQUE = 5000
+LIMITE_SAQUES_DIARIOS = 3
+
 saques = 0
-limite_saques_diarios = 3
-valor_limite_por_saque = 500
+
 saldo = 0
 qntde_de_depositos = 0
 usuarios = []
 contas = []
-AGENCIA = "0001"
+
+
+
 
 # Funções
 def depositar(saldo, qntde_de_depositos):
@@ -20,11 +25,11 @@ def depositar(saldo, qntde_de_depositos):
     print(f"Seu saldo atual é de R$ {saldo:.2f}")
     return saldo, qntde_de_depositos
 
-def sacar(saldo, saques, limite_saques_diarios):
+def sacar(saldo, saques, LIMITE_SAQUES_DIARIOS):
     valor = float(input("Qual valor você quer sacar: "))
-    if valor > valor_limite_por_saque:
-        print(f"Você só pode sacar R$ {valor_limite_por_saque} por vez.")
-    elif saques >= limite_saques_diarios:
+    if valor > VALOR_LIMITE_POR_SAQUE:
+        print(f"Você só pode sacar R$ {VALOR_LIMITE_POR_SAQUE} por vez.")
+    elif saques >= LIMITE_SAQUES_DIARIOS:
         print("Você atingiu o limite de saques diários.")
     elif valor > saldo:
         print("Saldo insuficiente!")
@@ -127,8 +132,7 @@ while True:
         saldo, qntde_de_depositos = depositar(saldo, qntde_de_depositos)
 
     elif opcao == 2:
-        saldo, saques = sacar(saldo, saques, limite_saques_diarios)
-
+        saldo, saques = sacar(saldo, saques, LIMITE_SAQUES_DIARIOS)
     elif opcao == 3:
         mostrar_extrato(saques, qntde_de_depositos, saldo)
 
